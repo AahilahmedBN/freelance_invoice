@@ -10,7 +10,7 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
 
-DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'abi_invoices.db')
+DDB = '/data/abi_invoices.db'
 
 # ── USERS (defined here — change passwords as needed) ──
 USERS = {
