@@ -10,7 +10,8 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
 
-DDB = '/data/abi_invoices.db'
+import os
+DDB = os.environ.get('DATABASE_URL', 'abi_invoices.db')
 
 # ── USERS (defined here — change passwords as needed) ──
 USERS = {
@@ -40,7 +41,7 @@ def login_required(f):
     return decorated
 
 def get_db():
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DDB)
     conn.row_factory = sqlite3.Row
     return conn
 
